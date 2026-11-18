@@ -16,11 +16,11 @@
     <header class="app-header">
       <div class="brand">
         <img src="icons/icon-192.png" alt="" class="brand-icon">
-        <div><h1>Calendrier</h1><p id="subtitle">Votre calendrier personnel</p></div>
+        <div><h1>Calendrier</h1></div>
       </div>
       <section id="toolbar" class="toolbar" hidden>
-        <button id="exportBtn" class="button primary" type="button">↓ <span>Sauvegarder</span></button>
-        <button id="resetBtn" class="button danger-outline" type="button">⌫ <span>Supprimer les données</span></button>
+        <button id="exportBtn" class="icon-button save-icon" type="button" aria-label="Sauvegarder" title="Sauvegarder">↓</button>
+        <button id="resetBtn" class="icon-button delete-icon" type="button" aria-label="Supprimer les données" title="Supprimer les données">⌫</button>
       </section>
     </header>
 
@@ -41,8 +41,7 @@
 
     <section id="calendarScreen" hidden>
       <div class="calendar-heading">
-        <div><h2 id="calendarTitle">Votre calendrier</h2><p id="calendarRange"></p></div>
-        <div class="legend"><span class="legend-dot event-dot"></span> Événement <span class="legend-dot milestone-dot"></span> J+280</div>
+        <div><h2 id="calendarTitle">Calendrier</h2><p id="calendarRange"></p></div>
       </div>
       <div class="weekday-row" id="weekdayRow" aria-hidden="true"></div>
       <div id="weeks" class="weeks"></div>
@@ -71,6 +70,22 @@
     <div class="dialog-head"><h2>Événements du jour</h2><button type="button" class="close-btn" data-close="viewDialog" aria-label="Fermer">×</button></div>
     <p id="viewDate" class="view-date"></p>
     <div id="viewEvents"></div>
+  </dialog>
+
+  <dialog id="milestoneDialog" class="dialog">
+    <form id="milestoneForm" method="dialog">
+      <div class="dialog-head"><h2>Modifier le repère J+280</h2><button type="button" class="close-btn" data-close="milestoneDialog" aria-label="Fermer">×</button></div>
+      <p class="milestone-help">Ce repère est créé automatiquement 280 jours après le début du calendrier. Tu peux modifier sa date et lui ajouter un texte.</p>
+      <label for="milestoneDate">Date du repère</label>
+      <input id="milestoneDate" type="date" required>
+      <label for="milestoneText">Texte personnalisé (facultatif)</label>
+      <textarea id="milestoneText" rows="4" maxlength="180" placeholder="Ajouter un texte à afficher dans cette case…"></textarea>
+      <button id="milestoneEventsBtn" class="button secondary milestone-events-btn" type="button" hidden>Voir les événements de cette date</button>
+      <div class="dialog-actions">
+        <button id="resetMilestone" class="button secondary" type="button">Réinitialiser J+280</button>
+        <button class="button primary" type="submit">Enregistrer</button>
+      </div>
+    </form>
   </dialog>
 
   <dialog id="confirmDialog" class="dialog compact">
